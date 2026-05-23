@@ -1,0 +1,20 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Session 6 requirements
+state/
+logs/
+sandbox/
+.env
+
+testing.md
+expected_output.md
+*.log
