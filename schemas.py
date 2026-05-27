@@ -7,7 +7,7 @@ class MemoryItem(BaseModel):
     Represents a durable memory item stored in the memory system.
     """
     id: str
-    kind: Literal["fact", "preference", "tool_outcome", "scratchpad"]
+    kind: Literal["fact", "preference"]
     keywords: List[str]
     descriptor: str
     value: dict

@@ -82,6 +82,8 @@ async def next_step(
         return DecisionOutput.model_validate(result_dict)
         
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         print(f"[Decision Error] {e}")
         return DecisionOutput(
             reasoning=f"Error: {e}",

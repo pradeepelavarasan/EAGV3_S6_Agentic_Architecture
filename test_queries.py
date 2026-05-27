@@ -32,8 +32,8 @@ class DualLogger:
 def reset_state(keep_memory: bool = False):
     """Cleans the state/ directory between assignment attempts."""
     # Always clear artifacts
-    if ARTIFACTS_DIR.exists():
-        shutil.rmtree(ARTIFACTS_DIR)
+    # if ARTIFACTS_DIR.exists():
+    #     shutil.rmtree(ARTIFACTS_DIR)
     ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
     
     # Conditionally clear memory

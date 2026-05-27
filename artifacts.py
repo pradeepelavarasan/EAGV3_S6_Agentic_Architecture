@@ -10,6 +10,16 @@ def init_artifacts_dir():
     """Ensure the artifacts directory exists."""
     ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
 
+def clear_all():
+    """Deletes all ephemeral artifact files in the directory."""
+    if ARTIFACTS_DIR.exists():
+        for file in ARTIFACTS_DIR.iterdir():
+            if file.is_file() and file.suffix in ('.bin', '.json'):
+                try:
+                    file.unlink()
+                except Exception as e:
+                    print(f"[artifacts] Warning: could not delete {file}: {e}")
+
 def put(blob: bytes, content_type: str, source: str, descriptor: str) -> str:
     """
     Hashes the blob, saves raw bytes to state/artifacts/<hash>.bin and metadata to <hash>.json.

@@ -16,5 +16,4 @@ sandbox/
 .env
 
 testing.md
-expected_output.md
 *.log

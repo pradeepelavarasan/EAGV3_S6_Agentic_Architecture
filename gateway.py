@@ -26,16 +26,32 @@ async def generate(
     if response_format:
         payload["response_format"] = response_format
 
-    async with httpx.AsyncClient(timeout=120.0) as client:
-        response = await client.post(
-            GATEWAY_URL,
-            json=payload,
-            headers={"Content-Type": "application/json"}
-        )
-        try:
-            response.raise_for_status()
-        except httpx.HTTPStatusError as exc:
-            print(f"[Gateway HTTP Error] {exc.response.status_code}: {exc.response.text}")
-            raise
-        data = response.json()
-        return data
+    import asyncio
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        async with httpx.AsyncClient(timeout=120.0) as client:
+            try:
+                response = await client.post(
+                    GATEWAY_URL,
+                    json=payload,
+                    headers={"Content-Type": "application/json"}
+                )
+                response.raise_for_status()
+            except httpx.HTTPStatusError as exc:
+                print(f"[Gateway HTTP Error] {exc.response.status_code}: {exc.response.text}")
+                if exc.response.status_code == 503 and attempt < max_retries - 1:
+                    print(f"[Gateway] All providers unavailable. Waiting 15 seconds before retry {attempt + 2}/{max_retries}...")
+                    await asyncio.sleep(15)
+                    continue
+                raise
+            except httpx.TimeoutException as exc:
+                print(f"[Gateway Timeout Error] The request took longer than 120 seconds.")
+                if attempt < max_retries - 1:
+                    print(f"[Gateway] Waiting 10 seconds before retry {attempt + 2}/{max_retries}...")
+                    await asyncio.sleep(10)
+                    continue
+                raise Exception("Gateway request timed out after 120 seconds.")
+            
+            data = response.json()
+            return data
