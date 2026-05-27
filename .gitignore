@@ -17,3 +17,5 @@ sandbox/
 
 testing.md
 *.log
+test_queries.py
+EAGV3_Master_Implementation_Plan.md
