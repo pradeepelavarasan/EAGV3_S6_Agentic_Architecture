@@ -9,30 +9,7 @@ Learning project to build a Python-based multi-agent system from scratch without
 - **Deterministic Action Selection:** The Orchestrator sets goals, and the Selector resolves them one by one.
 - **Model Context Protocol (MCP):** Standards-compliant tool execution.
 
-## System Architecture
 
-### 🧩 Core Components
-
-The architecture operates across three distinct layers, communicating entirely through strictly-typed Pydantic models:
-
-**1. Cognitive Layer**
-*   **Perception (Orchestrator):** The planner. It breaks down the user query into discrete, manageable `Goal`s, and intelligently attaches artifact references to relevant goals.
-*   **Decision (Selector):** The decider. It looks at the current `Goal` (and any attached artifacts) to decide whether to emit a final answer or call a tool.
-*   **Memory:** The historian. It holistically evaluates the entire conversation at the end of a run to extract durable personal facts, preferences, and world knowledge.
-
-**2. Execution Layer**
-*   **Action (Dispatch):** The doer. It receives tool call requests and executes them against a standardized Model Context Protocol (MCP) server.
-
-**3. Storage Layer**
-*   **Memory DB:** JSON-based durable storage (`state/memory.json`).
-*   **Artifacts:** Content-addressable storage for large tool outputs to prevent context window explosion (`state/artifacts/`). These are ephemeral and wiped after each run.
-*   **Logs:** Tracing of the agent's thought process (`logs/`).
-
-### The Pydantic Handshake
-- **MemoryItem:** Facts, implicit/explicit preferences, and learned knowledge.
-- **Artifact:** Handle for raw bytes (`art:<hash>`).
-- **Observation:** List of `Goal`s with `done` status.
-- **DecisionOutput:** Either a final `answer` or a `tool_call`.
 
 ## How It Works
 
