@@ -9,6 +9,8 @@ Learning project to build a Python-based multi-agent system from scratch without
 - **Deterministic Action Selection:** The Orchestrator sets goals, and the Selector resolves them one by one.
 - **Model Context Protocol (MCP):** Standards-compliant tool execution.
 
+[▶️  YouTube demo video - Multi-Agent System Architecture - Perception, Decision, Action, Memory: The Building Blocks](https://www.youtube.com/watch?v=A1xis7E1JSA)
+
 
 
 ## How It Works
