@@ -85,8 +85,7 @@ The agent enters a `MAX_ITERATIONS` loop (default 15).
 ![Query 2](assets/Query2.png)
 
 ### Query C. Mom's birthday (durable memory across two runs)
-> Run 1: My mom's birthday is 15 May 2026. Remember that and give me
->        a calendar reminder for two weeks before and on the day.
+> Run 1: My mom's birthday is 15 May 2026. Remember that and give me a calendar reminder for two weeks before and on the day.
 > Run 2: When is mom's birthday?
 
 ![Query 3](assets/Query3.png)
