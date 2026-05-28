@@ -19,7 +19,7 @@ Learning project to build a Python-based multi-agent system from scratch without
 The user issues a query. The agent initializes state and creates a timestamped run ID.
 
 ### 2. Memory Analysis & Extraction
-Instead of eagerly capturing transient thoughts, the agent waits until the *end* of the run. It looks holistically at the original query, the action history, and the final answer to extract: 1) Personal Facts, 2) Implicit Preferences, 3) Explicit Preferences, and 4) Learned World Knowledge (using `provider="gl"` for performance).
+Instead of eagerly capturing transient thoughts, the agent waits until the *end* of the run. It looks holistically at the original query, the action history, and the final answer to extract: 1) Personal Facts, 2) Implicit Preferences, 3) Explicit Preferences, and 4) Learned World Knowledge 
 
 ### 3. The Multi-Agent Loop
 The agent enters a `MAX_ITERATIONS` loop (default 15).
